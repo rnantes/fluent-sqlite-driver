@@ -7,8 +7,9 @@ let package = Package(
         .library(name: "FluentSQLiteDriver", targets: ["FluentSQLiteDriver"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/vapor/fluent-kit.git", .branch("master")),
-        .package(url: "https://github.com/vapor/sqlite-kit.git", .branch("master")),
+        //.package(url: "https://github.com/vapor/fluent-kit.git", .branch("master")),
+        .package(url: "https://github.com/rnantes/fluent-kit.git", .branch("master")),
+        .package(url: "https://github.com/rnantes/sqlite-kit.git", .branch("master")),
         .package(url: "https://github.com/apple/swift-log.git", from: "1.0.0"),
     ],
     targets: [
