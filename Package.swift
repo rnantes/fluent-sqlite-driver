@@ -3,6 +3,9 @@ import PackageDescription
 
 let package = Package(
     name: "fluent-sqlite-driver",
+    platforms: [
+       .macOS(.v10_14)
+    ],
     products: [
         .library(name: "FluentSQLiteDriver", targets: ["FluentSQLiteDriver"]),
     ],
