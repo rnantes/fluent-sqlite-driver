@@ -32,10 +32,6 @@ final class FluentSQLiteDriverTests: XCTestCase {
         try self.benchmarker.testEagerLoadParent()
     }
 
-    func testEagerLoadParentJoin() throws {
-        try self.benchmarker.testEagerLoadParentJoin()
-    }
-
     func testEagerLoadParentJSON() throws {
         try self.benchmarker.testEagerLoadParentJSON()
     }
@@ -100,6 +96,10 @@ final class FluentSQLiteDriverTests: XCTestCase {
         try self.benchmarker.testTimestampable()
     }
 
+    func testTransaction() throws {
+        try self.benchmarker.testTransaction()
+    }
+
     func testModelMiddleware() throws {
         try self.benchmarker.testModelMiddleware()
     }
@@ -156,6 +156,30 @@ final class FluentSQLiteDriverTests: XCTestCase {
         try self.benchmarker.testSoftDeleteWithQuery()
     }
 
+    func testDuplicatedUniquePropertyName() throws {
+        try self.benchmarker.testDuplicatedUniquePropertyName()
+    }
+
+    func testRange() throws {
+        try self.benchmarker.testRange()
+    }
+
+    func testRelationMethods() throws {
+        try self.benchmarker.testRelationMethods()
+    }
+
+    func testNonstandardIDKey() throws {
+        try self.benchmarker.testNonstandardIDKey()
+    }
+
+    func testGroup() throws {
+        try self.benchmarker.testGroup()
+    }
+
+    func testPagination() throws {
+        try self.benchmarker.testPagination()
+    }
+
     var benchmarker: FluentBenchmarker {
         return .init(database: self.database)
     }
@@ -177,10 +201,7 @@ final class FluentSQLiteDriverTests: XCTestCase {
         self.threadPool = .init(numberOfThreads: 2)
         self.threadPool.start()
         self.dbs = Databases(threadPool: self.threadPool, on: self.eventLoopGroup)
-        self.dbs.sqlite(
-            configuration: .init(storage: .memory),
-            maxConnectionsPerEventLoop: 2
-        )
+        self.dbs.use(.sqlite(.memory), as: .sqlite)
     }
 
     override func tearDown() {
